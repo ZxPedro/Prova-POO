@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -34,6 +35,7 @@ public class ViewMenu {
 	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTable tableCliente;
+	private JTable tableFunc;
 
 	/**
 	 * Launch the application.
@@ -67,10 +69,11 @@ public class ViewMenu {
 		frmCadastro.setSize(800, 600);
 		frmCadastro.setResizable(false);
 		frmCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCadastro.setLocationRelativeTo(null);
 
 		frmCadastro.setFont(new Font("Arial", Font.PLAIN, 12));
 		frmCadastro.getContentPane().setLayout(null);
-		
+
 		ArrayList<Funcionario> listafunc = new ArrayList<Funcionario>();
 		ArrayList<Cliente> listacliente = new ArrayList<Cliente>();
 
@@ -156,12 +159,18 @@ public class ViewMenu {
 				tableCliente.setModel(modelo);
 				modelo.addColumn("Nome");
 				modelo.addColumn("Idade");
-				
+
 				tableCliente.getColumnModel().getColumn(0).setPreferredWidth(100);
 				tableCliente.getColumnModel().getColumn(1).setPreferredWidth(100);
-				
-				for(int i =0; i < listacliente.size(); i++) {
-					modelo.addRow(new Object[] {listacliente.get(i).nome, listacliente.get(i).idade});
+
+				if (listacliente.size() == 0) {
+					JOptionPane.showMessageDialog(null, "Você não possui clientes cadastrados", "Erro",
+							JOptionPane.ERROR_MESSAGE);
+					tabbedPane.setSelectedIndex(3);
+				} else {
+					for (int i = 0; i < listacliente.size(); i++) {
+						modelo.addRow(new Object[] { listacliente.get(i).nome, listacliente.get(i).idade });
+					}
 				}
 			}
 		});
@@ -174,6 +183,24 @@ public class ViewMenu {
 		btnListarFuncionrios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tabbedPane.setSelectedIndex(6);
+				DefaultTableModel modelo2 = new DefaultTableModel();
+				tableFunc.setModel(modelo2);
+				modelo2.addColumn("Nome");
+				modelo2.addColumn("Idade");
+
+				tableFunc.getColumnModel().getColumn(0).setPreferredWidth(100);
+				tableFunc.getColumnModel().getColumn(1).setPreferredWidth(100);
+
+				if (listafunc.size() == 0) {
+					JOptionPane.showMessageDialog(null, "Você não possui funcionários cadastrados", "Erro",
+							JOptionPane.ERROR_MESSAGE);
+					tabbedPane.setSelectedIndex(2);
+				} else {
+					for (int i = 0; i < listafunc.size(); i++) {
+						modelo2.addRow(new Object[] { listafunc.get(i).nome, listafunc.get(i).idade });
+					}
+				}
+
 			}
 		});
 		panel.add(btnListarFuncionrios);
@@ -190,25 +217,30 @@ public class ViewMenu {
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				empresa.nome = textField.getText();
-				empresa.cnpj = textField_1.getText();
 
 				if ((textField.getText().trim().isEmpty()) || (textField_1.getText().trim().isEmpty())) {
 					JOptionPane.showMessageDialog(null, "Contém campo vazio", "Erro", JOptionPane.ERROR_MESSAGE);
-					tabbedPane.setSelectedIndex(0);
+					tabbedPane.setSelectedIndex(1);
 					textField.setText("");
 					textField_1.setText("");
 				} else {
-					tabbedPane.setSelectedIndex(0);
-					textField.setText("");
-					textField_1.setText("");
-					btnCadastrarEmpresa.setEnabled(false);
-					btnCadastrarFuncionrio.setEnabled(true);
-					btnCadastrarClientes.setEnabled(true);
-					btnListarEmpresa.setEnabled(true);
-					btnListarClientes.setEnabled(true);
-					btnListarFuncionrios.setEnabled(true);
-
+					if(isCNPJ(textField_1.getText()) == false) {
+						JOptionPane.showMessageDialog(null, "CNPJ invalido", "Erro", JOptionPane.ERROR_MESSAGE);
+						textField.setText("");
+						textField_1.setText("");
+					}else {
+						empresa.nome = textField.getText();
+						empresa.cnpj = textField_1.getText();
+						tabbedPane.setSelectedIndex(1);
+						textField.setText("");
+						textField_1.setText("");
+						btnCadastrarEmpresa.setEnabled(false);
+						btnCadastrarFuncionrio.setEnabled(true);
+						btnCadastrarClientes.setEnabled(true);
+						btnListarEmpresa.setEnabled(true);
+						btnListarClientes.setEnabled(true);
+						btnListarFuncionrios.setEnabled(true);
+					}
 				}
 
 			}
@@ -294,9 +326,6 @@ public class ViewMenu {
 		JButton btnRegistrar_1 = new JButton("Registrar");
 		btnRegistrar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Funcionario func = new Funcionario();
-				func.nome = textField_4.getText();
-				func.idade = Integer.parseInt(textField_5.getText());
 
 				if ((textField_4.getText().trim().isEmpty()) || (textField_5.getText().trim().isEmpty())) {
 					JOptionPane.showMessageDialog(null, "Contém campo vazio", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -304,6 +333,9 @@ public class ViewMenu {
 					textField_4.setText("");
 					textField_5.setText("");
 				} else {
+					Funcionario func = new Funcionario();
+					func.nome = textField_4.getText();
+					func.idade = Integer.parseInt(textField_5.getText());
 					listafunc.add(func);
 					tabbedPane.setSelectedIndex(2);
 					textField_4.setText("");
@@ -324,6 +356,13 @@ public class ViewMenu {
 		panel_2.add(btnRegistrar_1);
 
 		JButton btnCancelar_1 = new JButton("Cancelar");
+		btnCancelar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				tabbedPane.setSelectedIndex(0);
+				textField_4.setText("");
+				textField_5.setText("");
+			}
+		});
 		sl_panel_2.putConstraint(SpringLayout.NORTH, btnCancelar_1, 0, SpringLayout.NORTH, btnRegistrar_1);
 		sl_panel_2.putConstraint(SpringLayout.EAST, btnCancelar_1, -44, SpringLayout.EAST, panel_2);
 		panel_2.add(btnCancelar_1);
@@ -382,16 +421,15 @@ public class ViewMenu {
 		JButton btnRegistrar_3 = new JButton("Registrar");
 		btnRegistrar_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Cliente cli = new Cliente();
-				cli.nome = textField_6.getText();
-				cli.idade = Integer.parseInt(textField_7.getText());
-
 				if ((textField_6.getText().trim().isEmpty()) || (textField_7.getText().trim().isEmpty())) {
 					JOptionPane.showMessageDialog(null, "Contém campo vazio", "Erro", JOptionPane.ERROR_MESSAGE);
 					tabbedPane.setSelectedIndex(3);
 					textField_6.setText("");
 					textField_7.setText("");
 				} else {
+					Cliente cli = new Cliente();
+					cli.nome = textField_6.getText();
+					cli.idade = Integer.parseInt(textField_7.getText());
 					listacliente.add(cli);
 					tabbedPane.setSelectedIndex(3);
 					textField_6.setText("");
@@ -412,6 +450,13 @@ public class ViewMenu {
 		panel_3.add(btnRegistrar_3);
 
 		JButton btnCancelar_3 = new JButton("Cancelar");
+		btnCancelar_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				tabbedPane.setSelectedIndex(0);
+				textField_6.setText("");
+				textField_7.setText("");
+			}
+		});
 		sl_panel_3.putConstraint(SpringLayout.NORTH, btnCancelar_3, 0, SpringLayout.NORTH, btnRegistrar_3);
 		sl_panel_3.putConstraint(SpringLayout.EAST, btnCancelar_3, -30, SpringLayout.EAST, panel_3);
 		panel_3.add(btnCancelar_3);
@@ -429,17 +474,11 @@ public class ViewMenu {
 		lblListaDeCliente.setFont(new Font("Times new Roman", Font.BOLD, 18));
 
 		tableCliente = new JTable();
-		tableCliente.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nome", "Idade"
-			}
-		));
 		sl_panel_7.putConstraint(SpringLayout.NORTH, tableCliente, 6, SpringLayout.SOUTH, lblListaDeCliente);
 		sl_panel_7.putConstraint(SpringLayout.WEST, tableCliente, 10, SpringLayout.WEST, panel_7);
+		sl_panel_7.putConstraint(SpringLayout.EAST, tableCliente, 550, SpringLayout.WEST, panel_7);
+		tableCliente.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Idade" }));
 		sl_panel_7.putConstraint(SpringLayout.SOUTH, tableCliente, 521, SpringLayout.SOUTH, lblListaDeCliente);
-		sl_panel_7.putConstraint(SpringLayout.EAST, tableCliente, 552, SpringLayout.WEST, panel_7);
 		panel_7.add(tableCliente);
 
 		JPanel panel_4 = new JPanel();
@@ -514,10 +553,17 @@ public class ViewMenu {
 
 		lblListaDeFuncionrios.setFont(new Font("Times new Roman", Font.BOLD, 18));
 
+		tableFunc = new JTable();
+		sl_panel_5.putConstraint(SpringLayout.NORTH, tableFunc, 11, SpringLayout.SOUTH, lblListaDeFuncionrios);
+		sl_panel_5.putConstraint(SpringLayout.WEST, tableFunc, 10, SpringLayout.WEST, panel_5);
+		sl_panel_5.putConstraint(SpringLayout.SOUTH, tableFunc, 520, SpringLayout.SOUTH, lblListaDeFuncionrios);
+		sl_panel_5.putConstraint(SpringLayout.EAST, tableFunc, 558, SpringLayout.WEST, panel_5);
+		panel_5.add(tableFunc);
+
 		sl_panel.putConstraint(SpringLayout.NORTH, btnSair, -25, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnSair, 0, SpringLayout.SOUTH, panel);
 		panel.add(btnSair);
-		
+
 		btnCadastrarFuncionrio.setEnabled(false);
 		btnCadastrarClientes.setEnabled(false);
 		btnListarEmpresa.setEnabled(false);
@@ -525,4 +571,59 @@ public class ViewMenu {
 		btnListarFuncionrios.setEnabled(false);
 
 	}
+
+	public static boolean isCNPJ(String CNPJ) {
+		if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111") || CNPJ.equals("22222222222222")
+				|| CNPJ.equals("33333333333333") || CNPJ.equals("44444444444444") || CNPJ.equals("55555555555555")
+				|| CNPJ.equals("66666666666666") || CNPJ.equals("77777777777777") || CNPJ.equals("88888888888888")
+				|| CNPJ.equals("99999999999999") || (CNPJ.length() != 14))
+			return (false);
+
+		char dig13, dig14;
+		int sm, i, r, num, peso;
+
+		try {
+
+			sm = 0;
+			peso = 2;
+			for (i = 11; i >= 0; i--) {
+
+				num = (int) (CNPJ.charAt(i) - 48);
+				sm = sm + (num * peso);
+				peso = peso + 1;
+				if (peso == 10)
+					peso = 2;
+			}
+
+			r = sm % 11;
+			if ((r == 0) || (r == 1))
+				dig13 = '0';
+			else
+				dig13 = (char) ((11 - r) + 48);
+
+			sm = 0;
+			peso = 2;
+			for (i = 12; i >= 0; i--) {
+				num = (int) (CNPJ.charAt(i) - 48);
+				sm = sm + (num * peso);
+				peso = peso + 1;
+				if (peso == 10)
+					peso = 2;
+			}
+
+			r = sm % 11;
+			if ((r == 0) || (r == 1))
+				dig14 = '0';
+			else
+				dig14 = (char) ((11 - r) + 48);
+
+			if ((dig13 == CNPJ.charAt(12)) && (dig14 == CNPJ.charAt(13)))
+				return (true);
+			else
+				return (false);
+		} catch (InputMismatchException erro) {
+			return (false);
+		}
+	}
+
 }
