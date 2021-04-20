@@ -238,7 +238,7 @@ public class ViewMenu {
 			public void actionPerformed(ActionEvent arg0) {
 
 				if ((textField.getText().trim().isEmpty()) || (textField_1.getText().trim().isEmpty())) {
-					JOptionPane.showMessageDialog(null, "Contém campo vazio", "Erro", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
 					tabbedPane.setSelectedIndex(1);
 					textField.setText("");
 					textField_1.setText("");
@@ -348,7 +348,7 @@ public class ViewMenu {
 			public void actionPerformed(ActionEvent arg0) {
 
 				if ((textField_4.getText().trim().isEmpty()) || (textField_5.getText().trim().isEmpty())) {
-					JOptionPane.showMessageDialog(null, "Contém campo vazio", "Erro", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
 					tabbedPane.setSelectedIndex(2);
 					textField_4.setText("");
 					textField_5.setText("");
@@ -441,7 +441,7 @@ public class ViewMenu {
 		btnRegistrar_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if ((textField_6.getText().trim().isEmpty()) || (textField_7.getText().trim().isEmpty())) {
-					JOptionPane.showMessageDialog(null, "Contém campo vazio", "Erro", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
 					tabbedPane.setSelectedIndex(3);
 					textField_6.setText("");
 					textField_7.setText("");
