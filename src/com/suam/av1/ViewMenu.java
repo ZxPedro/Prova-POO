@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.SpringLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -149,7 +150,7 @@ public class ViewMenu {
 		JButton btnListarFuncionrios = new JButton("Listar Funcionários");
 		btnListarFuncionrios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				tabbedPane.setSelectedIndex();
+				tabbedPane.setSelectedIndex(6);
 			}
 		});
 		sl_panel.putConstraint(SpringLayout.NORTH, btnListarFuncionrios, 28, SpringLayout.SOUTH, btnListarClientes);
@@ -164,6 +165,7 @@ public class ViewMenu {
 		lblCadastroDaEmpresa.setFont(new Font("Times new Roman", Font.BOLD, 18));
 		
 		Empresa empresa = new Empresa();
+		
 		
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(new ActionListener() {
@@ -195,13 +197,17 @@ public class ViewMenu {
 			}
 		});
 		
+		ArrayList<Funcionario> listafunc = new ArrayList<Funcionario>();
+		
 		btnListarEmpresa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tabbedPane.setSelectedIndex(4);
 				textField_2.setText(""+ empresa.nome);
 				textField_3.setText(""+ empresa.cnpj);
+				textField_9.setText(""+listafunc.size());
 				textField_2.setEnabled(false);
 				textField_3.setEnabled(false);
+				textField_9.setEnabled(false);
 				
 			}
 		});
@@ -269,7 +275,36 @@ public class ViewMenu {
 		sl_panel_2.putConstraint(SpringLayout.WEST, lblIdade, 0, SpringLayout.WEST, lblNome_2);
 		panel_2.add(lblIdade);
 		
+		//Registro de Funcionário//
 		JButton btnRegistrar_1 = new JButton("Registrar");
+		
+		Funcionario func = new Funcionario();
+		btnRegistrar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				func.nome = textField_4.getText();
+				func.idade = Integer.parseInt(textField_5.getText());
+				
+				if ((textField_4.getText().trim().isEmpty()) || (textField_5.getText().trim().isEmpty())) {
+					JOptionPane.showMessageDialog(null, "Contém campo vazio", "Erro", JOptionPane.ERROR_MESSAGE);
+					tabbedPane.setSelectedIndex(0);
+					textField_4.setText("");
+					textField_5.setText("");
+				} else {
+					listafunc.add(func);
+					tabbedPane.setSelectedIndex(2);
+					textField_4.setText("");
+					textField_5.setText("");
+					btnCadastrarEmpresa.setEnabled(false);
+					btnCadastrarFuncionrio.setEnabled(true);
+					btnCadastrarClientes.setEnabled(true);
+					btnListarEmpresa.setEnabled(true);
+					btnListarClientes.setEnabled(true);
+					btnListarFuncionrios.setEnabled(true);
+					
+				}
+			}
+		});
 		sl_panel_2.putConstraint(SpringLayout.WEST, btnRegistrar_1, 0, SpringLayout.WEST, lblNome_2);
 		sl_panel_2.putConstraint(SpringLayout.SOUTH, btnRegistrar_1, -24, SpringLayout.SOUTH, panel_2);
 		panel_2.add(btnRegistrar_1);
