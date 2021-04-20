@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
+import java.awt.Color;
 
 public class ViewMenu {
 
@@ -65,8 +66,9 @@ public class ViewMenu {
 	 */
 	private void initialize() {
 		frmCadastro = new JFrame();
+		frmCadastro.getContentPane().setBackground(Color.WHITE);
 		frmCadastro.setTitle("Cadastro");
-		frmCadastro.setSize(800, 600);
+		frmCadastro.setSize(800, 470);
 		frmCadastro.setResizable(false);
 		frmCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCadastro.setLocationRelativeTo(null);
@@ -78,6 +80,7 @@ public class ViewMenu {
 		ArrayList<Cliente> listacliente = new ArrayList<Cliente>();
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#fffffe"));
 		panel.setBounds(10, 0, 216, 553);
 		frmCadastro.getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
@@ -96,6 +99,8 @@ public class ViewMenu {
 		panel_1.setLayout(sl_panel_1);
 
 		JButton btnCadastrarEmpresa = new JButton("Cadastrar Empresa");
+		btnCadastrarEmpresa.setForeground(Color.WHITE);
+		btnCadastrarEmpresa.setBackground(Color.decode("#6246ea"));
 		sl_panel.putConstraint(SpringLayout.WEST, btnCadastrarEmpresa, 0, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, btnCadastrarEmpresa, 206, SpringLayout.WEST, panel);
 		btnCadastrarEmpresa.addActionListener(new ActionListener() {
@@ -106,7 +111,8 @@ public class ViewMenu {
 		});
 
 		JButton btnSair = new JButton("Sair");
-		sl_panel.putConstraint(SpringLayout.WEST, btnSair, 0, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, btnSair, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, btnSair, -122, SpringLayout.SOUTH, panel);
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int confirmed = JOptionPane.showConfirmDialog(null, "Você tem certeza que quer sair?",
@@ -118,6 +124,8 @@ public class ViewMenu {
 		panel.add(btnCadastrarEmpresa);
 
 		JButton btnCadastrarFuncionrio = new JButton("Cadastrar Funcionário");
+		btnCadastrarFuncionrio.setForeground(Color.WHITE);
+		btnCadastrarFuncionrio.setBackground(Color.decode("#6246ea"));
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnCadastrarEmpresa, -26, SpringLayout.NORTH,
 				btnCadastrarFuncionrio);
 		sl_panel.putConstraint(SpringLayout.WEST, btnCadastrarFuncionrio, 0, SpringLayout.WEST, panel);
@@ -130,6 +138,8 @@ public class ViewMenu {
 		panel.add(btnCadastrarFuncionrio);
 
 		JButton btnCadastrarClientes = new JButton("Cadastrar Clientes");
+		btnCadastrarClientes.setForeground(Color.WHITE);
+		btnCadastrarClientes.setBackground(Color.decode("#6246ea"));
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnCadastrarFuncionrio, -26, SpringLayout.NORTH,
 				btnCadastrarClientes);
 		sl_panel.putConstraint(SpringLayout.WEST, btnCadastrarClientes, 0, SpringLayout.WEST, panel);
@@ -142,6 +152,8 @@ public class ViewMenu {
 		panel.add(btnCadastrarClientes);
 
 		JButton btnListarEmpresa = new JButton("Listar Empresa");
+		btnListarEmpresa.setBackground(Color.decode("#6246ea"));
+		btnListarEmpresa.setForeground(Color.WHITE);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnListarEmpresa, -337, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnCadastrarClientes, -26, SpringLayout.NORTH, btnListarEmpresa);
 		sl_panel.putConstraint(SpringLayout.WEST, btnListarEmpresa, 0, SpringLayout.WEST, panel);
@@ -149,6 +161,8 @@ public class ViewMenu {
 		panel.add(btnListarEmpresa);
 
 		JButton btnListarClientes = new JButton("Listar Clientes");
+		btnListarClientes.setBackground(Color.decode("#6246ea"));
+		btnListarClientes.setForeground(Color.WHITE);
 		sl_panel.putConstraint(SpringLayout.NORTH, btnListarClientes, 26, SpringLayout.SOUTH, btnListarEmpresa);
 		sl_panel.putConstraint(SpringLayout.WEST, btnListarClientes, 0, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, btnListarClientes, 206, SpringLayout.WEST, panel);
@@ -177,6 +191,9 @@ public class ViewMenu {
 		panel.add(btnListarClientes);
 
 		JButton btnListarFuncionrios = new JButton("Listar Funcionários");
+		sl_panel.putConstraint(SpringLayout.NORTH, btnSair, 88, SpringLayout.SOUTH, btnListarFuncionrios);
+		btnListarFuncionrios.setBackground(Color.decode("#6246ea"));
+		btnListarFuncionrios.setForeground(Color.WHITE);
 		sl_panel.putConstraint(SpringLayout.NORTH, btnListarFuncionrios, 26, SpringLayout.SOUTH, btnListarClientes);
 		sl_panel.putConstraint(SpringLayout.WEST, btnListarFuncionrios, 0, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, btnListarFuncionrios, 206, SpringLayout.WEST, panel);
@@ -215,6 +232,8 @@ public class ViewMenu {
 		Empresa empresa = new Empresa();
 
 		JButton btnRegistrar = new JButton("Registrar");
+		sl_panel_1.putConstraint(SpringLayout.WEST, btnRegistrar, 10, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnRegistrar, -151, SpringLayout.SOUTH, panel_1);
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -234,6 +253,7 @@ public class ViewMenu {
 						tabbedPane.setSelectedIndex(1);
 						textField.setText("");
 						textField_1.setText("");
+						JOptionPane.showMessageDialog(null, "Empresa cadastrada com sucesso!");
 						btnCadastrarEmpresa.setEnabled(false);
 						btnCadastrarFuncionrio.setEnabled(true);
 						btnCadastrarClientes.setEnabled(true);
@@ -259,13 +279,11 @@ public class ViewMenu {
 
 			}
 		});
-		sl_panel_1.putConstraint(SpringLayout.WEST, btnRegistrar, 10, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnRegistrar, -27, SpringLayout.SOUTH, panel_1);
 		panel_1.add(btnRegistrar);
 
 		JButton btnCancelar = new JButton("Cancelar");
 		sl_panel_1.putConstraint(SpringLayout.NORTH, btnCancelar, 0, SpringLayout.NORTH, btnRegistrar);
-		sl_panel_1.putConstraint(SpringLayout.EAST, btnCancelar, -39, SpringLayout.EAST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, btnCancelar, -22, SpringLayout.EAST, panel_1);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tabbedPane.setSelectedIndex(0);
@@ -318,12 +336,14 @@ public class ViewMenu {
 		panel_2.add(lblNome_2);
 
 		JLabel lblIdade = new JLabel("Idade:");
-		sl_panel_2.putConstraint(SpringLayout.NORTH, lblIdade, 52, SpringLayout.SOUTH, lblNome_2);
+		sl_panel_2.putConstraint(SpringLayout.NORTH, lblIdade, 34, SpringLayout.SOUTH, lblNome_2);
 		sl_panel_2.putConstraint(SpringLayout.WEST, lblIdade, 0, SpringLayout.WEST, lblNome_2);
 		panel_2.add(lblIdade);
 
 		// Registro de Funcionário//
 		JButton btnRegistrar_1 = new JButton("Registrar");
+		sl_panel_2.putConstraint(SpringLayout.WEST, btnRegistrar_1, 0, SpringLayout.WEST, lblNome_2);
+		sl_panel_2.putConstraint(SpringLayout.SOUTH, btnRegistrar_1, -160, SpringLayout.SOUTH, panel_2);
 		btnRegistrar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -351,11 +371,11 @@ public class ViewMenu {
 				}
 			}
 		});
-		sl_panel_2.putConstraint(SpringLayout.WEST, btnRegistrar_1, 0, SpringLayout.WEST, lblNome_2);
-		sl_panel_2.putConstraint(SpringLayout.SOUTH, btnRegistrar_1, -24, SpringLayout.SOUTH, panel_2);
 		panel_2.add(btnRegistrar_1);
 
 		JButton btnCancelar_1 = new JButton("Cancelar");
+		sl_panel_2.putConstraint(SpringLayout.NORTH, btnCancelar_1, 0, SpringLayout.NORTH, btnRegistrar_1);
+		sl_panel_2.putConstraint(SpringLayout.EAST, btnCancelar_1, -28, SpringLayout.EAST, panel_2);
 		btnCancelar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tabbedPane.setSelectedIndex(0);
@@ -363,8 +383,6 @@ public class ViewMenu {
 				textField_5.setText("");
 			}
 		});
-		sl_panel_2.putConstraint(SpringLayout.NORTH, btnCancelar_1, 0, SpringLayout.NORTH, btnRegistrar_1);
-		sl_panel_2.putConstraint(SpringLayout.EAST, btnCancelar_1, -44, SpringLayout.EAST, panel_2);
 		panel_2.add(btnCancelar_1);
 
 		textField_4 = new JTextField();
@@ -375,9 +393,9 @@ public class ViewMenu {
 		textField_4.setColumns(10);
 
 		textField_5 = new JTextField();
-		sl_panel_2.putConstraint(SpringLayout.NORTH, textField_5, -2, SpringLayout.NORTH, lblIdade);
-		sl_panel_2.putConstraint(SpringLayout.WEST, textField_5, 6, SpringLayout.EAST, lblIdade);
-		sl_panel_2.putConstraint(SpringLayout.EAST, textField_5, 6, SpringLayout.EAST, btnRegistrar_1);
+		sl_panel_2.putConstraint(SpringLayout.NORTH, textField_5, 0, SpringLayout.NORTH, lblIdade);
+		sl_panel_2.putConstraint(SpringLayout.WEST, textField_5, 61, SpringLayout.WEST, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.EAST, textField_5, -466, SpringLayout.EAST, panel_2);
 		panel_2.add(textField_5);
 		textField_5.setColumns(10);
 
@@ -419,6 +437,7 @@ public class ViewMenu {
 
 		// Registrar Cliente//
 		JButton btnRegistrar_3 = new JButton("Registrar");
+		sl_panel_3.putConstraint(SpringLayout.WEST, btnRegistrar_3, 0, SpringLayout.WEST, lblNome_3);
 		btnRegistrar_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if ((textField_6.getText().trim().isEmpty()) || (textField_7.getText().trim().isEmpty())) {
@@ -445,11 +464,12 @@ public class ViewMenu {
 				}
 			}
 		});
-		sl_panel_3.putConstraint(SpringLayout.WEST, btnRegistrar_3, 0, SpringLayout.WEST, lblNome_3);
-		sl_panel_3.putConstraint(SpringLayout.SOUTH, btnRegistrar_3, -23, SpringLayout.SOUTH, panel_3);
 		panel_3.add(btnRegistrar_3);
 
 		JButton btnCancelar_3 = new JButton("Cancelar");
+		sl_panel_3.putConstraint(SpringLayout.NORTH, btnRegistrar_3, 0, SpringLayout.NORTH, btnCancelar_3);
+		sl_panel_3.putConstraint(SpringLayout.NORTH, btnCancelar_3, 392, SpringLayout.NORTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.EAST, btnCancelar_3, -22, SpringLayout.EAST, panel_3);
 		btnCancelar_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tabbedPane.setSelectedIndex(0);
@@ -457,8 +477,6 @@ public class ViewMenu {
 				textField_7.setText("");
 			}
 		});
-		sl_panel_3.putConstraint(SpringLayout.NORTH, btnCancelar_3, 0, SpringLayout.NORTH, btnRegistrar_3);
-		sl_panel_3.putConstraint(SpringLayout.EAST, btnCancelar_3, -30, SpringLayout.EAST, panel_3);
 		panel_3.add(btnCancelar_3);
 
 		JPanel panel_7 = new JPanel();
@@ -500,18 +518,20 @@ public class ViewMenu {
 
 		JLabel lblCnpj_1 = new JLabel("CNPJ:");
 		sl_panel_4.putConstraint(SpringLayout.NORTH, lblCnpj_1, 29, SpringLayout.SOUTH, lblNome_1);
-		sl_panel_4.putConstraint(SpringLayout.WEST, lblCnpj_1, 10, SpringLayout.WEST, panel_4);
+		sl_panel_4.putConstraint(SpringLayout.WEST, lblCnpj_1, 0, SpringLayout.WEST, lblNome_1);
 		panel_4.add(lblCnpj_1);
 
 		textField_2 = new JTextField();
-		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_2, -2, SpringLayout.NORTH, lblNome_1);
+		textField_2.setFont(new Font("Dialog", Font.BOLD, 12));
+		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_2, 29, SpringLayout.SOUTH, lblEmpresaCadastrada);
 		sl_panel_4.putConstraint(SpringLayout.WEST, textField_2, 6, SpringLayout.EAST, lblNome_1);
 		sl_panel_4.putConstraint(SpringLayout.EAST, textField_2, -304, SpringLayout.EAST, panel_4);
 		panel_4.add(textField_2);
 		textField_2.setColumns(10);
 
 		textField_3 = new JTextField();
-		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_3, -2, SpringLayout.NORTH, lblCnpj_1);
+		textField_3.setFont(new Font("Dialog", Font.BOLD, 12));
+		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_3, 25, SpringLayout.SOUTH, textField_2);
 		sl_panel_4.putConstraint(SpringLayout.WEST, textField_3, 0, SpringLayout.WEST, textField_2);
 		sl_panel_4.putConstraint(SpringLayout.EAST, textField_3, 0, SpringLayout.EAST, textField_2);
 		panel_4.add(textField_3);
@@ -519,25 +539,27 @@ public class ViewMenu {
 
 		JLabel lblClientes = new JLabel("Clientes:");
 		sl_panel_4.putConstraint(SpringLayout.NORTH, lblClientes, 27, SpringLayout.SOUTH, textField_3);
-		sl_panel_4.putConstraint(SpringLayout.WEST, lblClientes, 10, SpringLayout.WEST, panel_4);
+		sl_panel_4.putConstraint(SpringLayout.WEST, lblClientes, 0, SpringLayout.WEST, lblNome_1);
 		panel_4.add(lblClientes);
 
 		textField_8 = new JTextField();
-		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_8, -2, SpringLayout.NORTH, lblClientes);
+		textField_8.setFont(new Font("Dialog", Font.BOLD, 12));
+		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_8, 25, SpringLayout.SOUTH, textField_3);
 		sl_panel_4.putConstraint(SpringLayout.WEST, textField_8, 12, SpringLayout.EAST, lblClientes);
-		sl_panel_4.putConstraint(SpringLayout.EAST, textField_8, 100, SpringLayout.EAST, lblClientes);
+		sl_panel_4.putConstraint(SpringLayout.EAST, textField_8, -409, SpringLayout.EAST, panel_4);
 		panel_4.add(textField_8);
 		textField_8.setColumns(10);
 
 		JLabel lblFuncionrios = new JLabel("Funcionários:");
 		sl_panel_4.putConstraint(SpringLayout.NORTH, lblFuncionrios, 25, SpringLayout.SOUTH, textField_8);
-		sl_panel_4.putConstraint(SpringLayout.WEST, lblFuncionrios, 10, SpringLayout.WEST, panel_4);
+		sl_panel_4.putConstraint(SpringLayout.WEST, lblFuncionrios, 0, SpringLayout.WEST, lblNome_1);
 		panel_4.add(lblFuncionrios);
 
 		textField_9 = new JTextField();
-		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_9, -2, SpringLayout.NORTH, lblFuncionrios);
+		textField_9.setFont(new Font("Dialog", Font.BOLD, 12));
+		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_9, 23, SpringLayout.SOUTH, textField_8);
 		sl_panel_4.putConstraint(SpringLayout.WEST, textField_9, 6, SpringLayout.EAST, lblFuncionrios);
-		sl_panel_4.putConstraint(SpringLayout.EAST, textField_9, 80, SpringLayout.EAST, lblFuncionrios);
+		sl_panel_4.putConstraint(SpringLayout.EAST, textField_9, -396, SpringLayout.EAST, panel_4);
 		panel_4.add(textField_9);
 		textField_9.setColumns(10);
 
@@ -559,9 +581,6 @@ public class ViewMenu {
 		sl_panel_5.putConstraint(SpringLayout.SOUTH, tableFunc, 520, SpringLayout.SOUTH, lblListaDeFuncionrios);
 		sl_panel_5.putConstraint(SpringLayout.EAST, tableFunc, 558, SpringLayout.WEST, panel_5);
 		panel_5.add(tableFunc);
-
-		sl_panel.putConstraint(SpringLayout.NORTH, btnSair, -25, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, btnSair, 0, SpringLayout.SOUTH, panel);
 		panel.add(btnSair);
 
 		btnCadastrarFuncionrio.setEnabled(false);
