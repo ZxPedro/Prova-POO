@@ -224,26 +224,26 @@ public class ViewMenu {
 		
 		
 		JLabel lblNome = new JLabel("Nome:");
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNome, 97, SpringLayout.NORTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblNome, 30, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNome, 70, SpringLayout.NORTH, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.WEST, lblNome, 0, SpringLayout.WEST, btnRegistrar);
 		panel_1.add(lblNome);
 		
 		JLabel lblCnpj = new JLabel("CNPJ:");
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblCnpj, 26, SpringLayout.SOUTH, lblNome);
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblCnpj, 0, SpringLayout.WEST, lblNome);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, lblCnpj, 53, SpringLayout.SOUTH, lblNome);
+		sl_panel_1.putConstraint(SpringLayout.WEST, lblCnpj, 0, SpringLayout.WEST, btnRegistrar);
 		panel_1.add(lblCnpj);
 		
 		textField = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, textField, 63, SpringLayout.SOUTH, lblCadastroDaEmpresa);
-		sl_panel_1.putConstraint(SpringLayout.WEST, textField, 5, SpringLayout.EAST, lblNome);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField, 220, SpringLayout.EAST, lblNome);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, textField, -2, SpringLayout.NORTH, lblNome);
+		sl_panel_1.putConstraint(SpringLayout.WEST, textField, 6, SpringLayout.EAST, lblNome);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textField, -306, SpringLayout.EAST, panel_1);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		sl_panel_1.putConstraint(SpringLayout.NORTH, textField_1, -2, SpringLayout.NORTH, lblCnpj);
-		sl_panel_1.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, textField);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField_1, -20, SpringLayout.EAST, textField);
+		sl_panel_1.putConstraint(SpringLayout.WEST, textField_1, 15, SpringLayout.EAST, lblCnpj);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textField_1, -325, SpringLayout.EAST, panel_1);
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 		
