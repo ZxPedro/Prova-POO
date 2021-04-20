@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextPane;
 
 
 
@@ -27,6 +29,9 @@ public class ViewMenu {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
 
 	/**
 	 * Launch the application.
@@ -106,12 +111,22 @@ public class ViewMenu {
 		panel.add(btnCadastrarEmpresa);
 		
 		JButton btnCadastrarFuncionrio = new JButton("Cadastrar Funcionário");
+		btnCadastrarFuncionrio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				tabbedPane.setSelectedIndex(2);
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.NORTH, btnCadastrarFuncionrio, 25, SpringLayout.SOUTH, btnCadastrarEmpresa);
 		sl_panel.putConstraint(SpringLayout.WEST, btnCadastrarFuncionrio, 0, SpringLayout.WEST, btnCadastrarEmpresa);
 		sl_panel.putConstraint(SpringLayout.EAST, btnCadastrarFuncionrio, 36, SpringLayout.EAST, btnCadastrarEmpresa);
 		panel.add(btnCadastrarFuncionrio);
 		
 		JButton btnCadastrarClientes = new JButton("Cadastrar Clientes");
+		btnCadastrarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				tabbedPane.setSelectedIndex(3);
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.NORTH, btnCadastrarClientes, 21, SpringLayout.SOUTH, btnCadastrarFuncionrio);
 		sl_panel.putConstraint(SpringLayout.WEST, btnCadastrarClientes, 0, SpringLayout.WEST, btnCadastrarEmpresa);
 		panel.add(btnCadastrarClientes);
@@ -122,11 +137,21 @@ public class ViewMenu {
 		panel.add(btnListarEmpresa);
 		
 		JButton btnListarClientes = new JButton("Listar Clientes");
+		btnListarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				tabbedPane.setSelectedIndex(5);
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.NORTH, btnListarClientes, 29, SpringLayout.SOUTH, btnListarEmpresa);
 		sl_panel.putConstraint(SpringLayout.WEST, btnListarClientes, 0, SpringLayout.WEST, btnCadastrarEmpresa);
 		panel.add(btnListarClientes);
 		
 		JButton btnListarFuncionrios = new JButton("Listar Funcionários");
+		btnListarFuncionrios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				tabbedPane.setSelectedIndex();
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.NORTH, btnListarFuncionrios, 28, SpringLayout.SOUTH, btnListarClientes);
 		sl_panel.putConstraint(SpringLayout.WEST, btnListarFuncionrios, 0, SpringLayout.WEST, btnCadastrarEmpresa);
 		panel.add(btnListarFuncionrios);
@@ -204,7 +229,7 @@ public class ViewMenu {
 		panel_1.add(lblNome);
 		
 		JLabel lblCnpj = new JLabel("CNPJ:");
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblCnpj, 41, SpringLayout.SOUTH, lblNome);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, lblCnpj, 26, SpringLayout.SOUTH, lblNome);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblCnpj, 0, SpringLayout.WEST, lblNome);
 		panel_1.add(lblCnpj);
 		
@@ -218,7 +243,7 @@ public class ViewMenu {
 		textField_1 = new JTextField();
 		sl_panel_1.putConstraint(SpringLayout.NORTH, textField_1, -2, SpringLayout.NORTH, lblCnpj);
 		sl_panel_1.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, textField);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField_1, 0, SpringLayout.EAST, textField);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textField_1, -20, SpringLayout.EAST, textField);
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -297,6 +322,23 @@ public class ViewMenu {
 		panel_3.add(textField_6);
 		textField_6.setColumns(10);
 		
+		textField_7 = new JTextField();
+		sl_panel_3.putConstraint(SpringLayout.NORTH, textField_7, 25, SpringLayout.SOUTH, textField_6);
+		sl_panel_3.putConstraint(SpringLayout.WEST, textField_7, 6, SpringLayout.EAST, lblIdade_1);
+		sl_panel_3.putConstraint(SpringLayout.EAST, textField_7, 99, SpringLayout.EAST, lblIdade_1);
+		panel_3.add(textField_7);
+		textField_7.setColumns(10);
+		
+		JButton btnRegistrar_3 = new JButton("Registrar");
+		sl_panel_3.putConstraint(SpringLayout.WEST, btnRegistrar_3, 0, SpringLayout.WEST, lblNome_3);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, btnRegistrar_3, -23, SpringLayout.SOUTH, panel_3);
+		panel_3.add(btnRegistrar_3);
+		
+		JButton btnCancelar_3 = new JButton("Cancelar");
+		sl_panel_3.putConstraint(SpringLayout.NORTH, btnCancelar_3, 0, SpringLayout.NORTH, btnRegistrar_3);
+		sl_panel_3.putConstraint(SpringLayout.EAST, btnCancelar_3, -30, SpringLayout.EAST, panel_3);
+		panel_3.add(btnCancelar_3);
+		
 		JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("", null, panel_4, null);
 		tabbedPane.setEnabledAt(4, false);
@@ -305,7 +347,7 @@ public class ViewMenu {
 		
 		JLabel lblEmpresaCadastrada = new JLabel("Empresa Cadastrada");
 		sl_panel_4.putConstraint(SpringLayout.NORTH, lblEmpresaCadastrada, 10, SpringLayout.NORTH, panel_4);
-		sl_panel_4.putConstraint(SpringLayout.EAST, lblEmpresaCadastrada, -208, SpringLayout.EAST, panel_4);
+		sl_panel_4.putConstraint(SpringLayout.WEST, lblEmpresaCadastrada, 183, SpringLayout.WEST, panel_4);
 		panel_4.add(lblEmpresaCadastrada);
 		lblEmpresaCadastrada.setFont(new Font("Times new Roman", Font.BOLD, 18));
 		
@@ -320,28 +362,54 @@ public class ViewMenu {
 		panel_4.add(lblCnpj_1);
 		
 		textField_2 = new JTextField();
-		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_2, 36, SpringLayout.SOUTH, lblEmpresaCadastrada);
+		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_2, -2, SpringLayout.NORTH, lblNome_1);
 		sl_panel_4.putConstraint(SpringLayout.WEST, textField_2, 6, SpringLayout.EAST, lblNome_1);
-		sl_panel_4.putConstraint(SpringLayout.EAST, textField_2, 223, SpringLayout.EAST, lblNome_1);
+		sl_panel_4.putConstraint(SpringLayout.EAST, textField_2, -304, SpringLayout.EAST, panel_4);
 		panel_4.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_3, 25, SpringLayout.SOUTH, textField_2);
-		sl_panel_4.putConstraint(SpringLayout.WEST, textField_3, 14, SpringLayout.EAST, lblCnpj_1);
+		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_3, -2, SpringLayout.NORTH, lblCnpj_1);
+		sl_panel_4.putConstraint(SpringLayout.WEST, textField_3, 0, SpringLayout.WEST, textField_2);
 		sl_panel_4.putConstraint(SpringLayout.EAST, textField_3, 0, SpringLayout.EAST, textField_2);
 		panel_4.add(textField_3);
 		textField_3.setColumns(10);
 		
-		JButton btnRegistrar_2 = new JButton("Registrar");
-		sl_panel_4.putConstraint(SpringLayout.WEST, btnRegistrar_2, 0, SpringLayout.WEST, lblNome_1);
-		sl_panel_4.putConstraint(SpringLayout.SOUTH, btnRegistrar_2, -21, SpringLayout.SOUTH, panel_4);
-		panel_4.add(btnRegistrar_2);
+		JLabel lblClientes = new JLabel("Clientes:");
+		sl_panel_4.putConstraint(SpringLayout.NORTH, lblClientes, 27, SpringLayout.SOUTH, textField_3);
+		sl_panel_4.putConstraint(SpringLayout.WEST, lblClientes, 10, SpringLayout.WEST, panel_4);
+		panel_4.add(lblClientes);
 		
-		JButton btnCancelar_2 = new JButton("Cancelar");
-		sl_panel_4.putConstraint(SpringLayout.NORTH, btnCancelar_2, 0, SpringLayout.NORTH, btnRegistrar_2);
-		sl_panel_4.putConstraint(SpringLayout.EAST, btnCancelar_2, -30, SpringLayout.EAST, panel_4);
-		panel_4.add(btnCancelar_2);
+		textField_8 = new JTextField();
+		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_8, -2, SpringLayout.NORTH, lblClientes);
+		sl_panel_4.putConstraint(SpringLayout.WEST, textField_8, 12, SpringLayout.EAST, lblClientes);
+		sl_panel_4.putConstraint(SpringLayout.EAST, textField_8, 100, SpringLayout.EAST, lblClientes);
+		panel_4.add(textField_8);
+		textField_8.setColumns(10);
+		
+		JLabel lblFuncionrios = new JLabel("Funcionários:");
+		sl_panel_4.putConstraint(SpringLayout.NORTH, lblFuncionrios, 25, SpringLayout.SOUTH, textField_8);
+		sl_panel_4.putConstraint(SpringLayout.WEST, lblFuncionrios, 10, SpringLayout.WEST, panel_4);
+		panel_4.add(lblFuncionrios);
+		
+		textField_9 = new JTextField();
+		sl_panel_4.putConstraint(SpringLayout.NORTH, textField_9, -2, SpringLayout.NORTH, lblFuncionrios);
+		sl_panel_4.putConstraint(SpringLayout.WEST, textField_9, 6, SpringLayout.EAST, lblFuncionrios);
+		sl_panel_4.putConstraint(SpringLayout.EAST, textField_9, 80, SpringLayout.EAST, lblFuncionrios);
+		panel_4.add(textField_9);
+		textField_9.setColumns(10);
+		
+		JPanel panel_7 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_7, null);
+		SpringLayout sl_panel_7 = new SpringLayout();
+		panel_7.setLayout(sl_panel_7);
+		
+		JLabel lblListaDeCliente = new JLabel("Lista de Cliente");
+		sl_panel_7.putConstraint(SpringLayout.NORTH, lblListaDeCliente, 10, SpringLayout.NORTH, panel_7);
+		sl_panel_7.putConstraint(SpringLayout.WEST, lblListaDeCliente, 231, SpringLayout.WEST, panel_7);
+		panel_7.add(lblListaDeCliente);
+		
+		lblListaDeCliente.setFont(new Font("Times new Roman", Font.BOLD, 18));
 		
 		JPanel panel_5 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_5, null);
@@ -350,8 +418,10 @@ public class ViewMenu {
 		
 		JLabel lblListaDeFuncionrios = new JLabel("Lista de Funcionários");
 		sl_panel_5.putConstraint(SpringLayout.NORTH, lblListaDeFuncionrios, 10, SpringLayout.NORTH, panel_5);
-		sl_panel_5.putConstraint(SpringLayout.EAST, lblListaDeFuncionrios, -200, SpringLayout.EAST, panel_5);
+		sl_panel_5.putConstraint(SpringLayout.EAST, lblListaDeFuncionrios, -182, SpringLayout.EAST, panel_5);
 		panel_5.add(lblListaDeFuncionrios);
+		
+		lblListaDeFuncionrios.setFont(new Font("Times new Roman", Font.BOLD, 18));
 		
 
 
